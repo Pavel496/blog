@@ -30,7 +30,7 @@
 			</div>
 		</article>
 
-		<article class="post w-image">
+		{{-- <article class="post w-image">
 			<figure><img src="img/img-post-1.png" alt="" class="img-responsive"></figure>
 			<div class="content-post">
 				<header class="container-flex space-between">
@@ -229,7 +229,7 @@
 			</div>
 		</article>
 
-	</section><!-- fin del div.posts.container -->
+	</section><!-- fin del div.posts.container --> --}}
 
 	<div class="pagination">
 		<ul class="list-unstyled container-flex space-center">
@@ -239,4 +239,4 @@
 		</ul>
 	</div>
 
-@stop	
+@stop
