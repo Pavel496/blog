@@ -11,7 +11,7 @@ Route::group([
   'namespace' => 'Admin',
   'middleware' => 'auth'],
 function(){
-  Route::get('posts', 'PostsController@index');
+  Route::get('posts', 'PostsController@index')->name('admin.posts.index');
 
 });
 
