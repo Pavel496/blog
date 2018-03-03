@@ -1,6 +1,6 @@
 @extends('admin.layout')
 
-@section('header')
+{{-- @section('header')
   <h1>
     Dashboard
     <small>Optional description</small>
@@ -9,7 +9,7 @@
     <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
     <li class="active">Dashboard</li>
   </ol>
-@endsection
+@endsection --}}
 
 @section('content')
 

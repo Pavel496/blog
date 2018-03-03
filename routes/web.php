@@ -2,8 +2,6 @@
 
 Route::get('/', 'PagesController@home');
 
-Route::get('home', 'HomeController@index');
-
 // Route::get('admin/posts', 'Admin\PostsController@index');
 
 Route::group([
@@ -11,8 +9,8 @@ Route::group([
   'namespace' => 'Admin',
   'middleware' => 'auth'],
 function(){
+  Route::get('/', 'AdminController@index')->name('dashboard');
   Route::get('posts', 'PostsController@index')->name('admin.posts.index');
-
 });
 
 // Authentication Routes...
