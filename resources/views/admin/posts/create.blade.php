@@ -38,13 +38,53 @@
             <h3 class="box-title"></h3>
           </div> --}}
           <div class="box-body">
+
+            <!-- Date -->
+            <div class="form-group">
+              <label>Date of publication</label>
+              <div class="input-group date">
+                <div class="input-group-addon">
+                  <i class="fa fa-calendar"></i>
+                </div>
+                <input name="published_at" type="text" class="form-control pull-right" id="datepicker">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Categories</label>
+              <select class="form-control">
+                <option value="">Select category</option>
+                  @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                  @endforeach
+              </select>
+            </div>
+
             <div class="form-group">
               <label>Excerpt</label>
               <textarea name="excerpt" class="form-control" placeholder= "Enter excerpt of post"></textarea>
             </div>
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block">Save Publication</button>
+            </div>
+
           </div>
         </div>
       </div>
     </form>
   </div>
 @endsection
+
+@push('styles')
+  <link rel="stylesheet" href="/adminlte/plugins/datepicker/datepicker3.css">
+@endpush
+
+@push('scripts')
+<script src="/adminlte/plugins/datepicker/bootstrap-datepicker.js"></script>
+<script>
+  $('#datepicker').datepicker({
+    autoclose: true
+  });
+</script>
+@endpush
