@@ -27,7 +27,7 @@
               </div>
               <div class="form-group">
                 <label>Body</label>
-                <textarea rows="10" name="body" class="form-control" placeholder= "Enter body of post"></textarea>
+                <textarea rows="10" id="editor" name="body" class="form-control" placeholder= "Enter body of post"></textarea>
               </div>
             </div>
         </div>
@@ -61,6 +61,17 @@
             </div>
 
             <div class="form-group">
+              <label>Tags</label>
+              <select class="form-control select2"
+                      multiple="multiple"
+                      data-placeholder="Select one or more tags" style="width: 100%;">
+                  @foreach ($tags as $tag)
+                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                  @endforeach
+              </select>
+            </div>
+
+            <div class="form-group">
               <label>Excerpt</label>
               <textarea name="excerpt" class="form-control" placeholder= "Enter excerpt of post"></textarea>
             </div>
@@ -78,13 +89,18 @@
 
 @push('styles')
   <link rel="stylesheet" href="/adminlte/plugins/datepicker/datepicker3.css">
+  <link rel="stylesheet" href="/adminlte/plugins/select2/select2.min.css">
 @endpush
 
 @push('scripts')
-<script src="/adminlte/plugins/datepicker/bootstrap-datepicker.js"></script>
-<script>
-  $('#datepicker').datepicker({
-    autoclose: true
-  });
-</script>
+  <script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
+  <script src="/adminlte/plugins/select2/select2.full.min.js"></script>
+  <script src="/adminlte/plugins/datepicker/bootstrap-datepicker.js"></script>
+  <script>
+    $('#datepicker').datepicker({
+      autoclose: true
+    });
+    $(".select2").select2();
+    CKEDITOR.replace('editor');
+  </script>
 @endpush
