@@ -6,8 +6,9 @@
     <small>List</small>
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-    <li class="active">Posts</li>
+    <li><a href="{{ route('dashboard') }}"><i class="fa fa-home"></i> Dashboard</a></li>
+    <li><a href="{{ route('admin.posts.create') }}"><i class="fa fa-pencil"></i> Create post</a></li>
+    <li class="active">All posts</li>
   </ol>
 @endsection
 
