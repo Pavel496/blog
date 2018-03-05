@@ -14,7 +14,8 @@
 
 @section('content')
   <div class="row">
-    <form>
+    <form method="POST" action="{{ route('admin.posts.store') }}">
+      {{ csrf_field() }}
       <div class="col-md-8">
         <div class="box box-primary">
           {{-- <div class="box-header">
@@ -52,7 +53,7 @@
 
             <div class="form-group">
               <label>Categories</label>
-              <select class="form-control">
+              <select name="category" class="form-control">
                 <option value="">Select category</option>
                   @foreach ($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -62,7 +63,7 @@
 
             <div class="form-group">
               <label>Tags</label>
-              <select class="form-control select2"
+              <select name="tags[]" class="form-control select2"
                       multiple="multiple"
                       data-placeholder="Select one or more tags" style="width: 100%;">
                   @foreach ($tags as $tag)
