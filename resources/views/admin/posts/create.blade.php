@@ -22,13 +22,19 @@
             <h3 class="box-title">Create post</h3>
           </div> --}}
             <div class="box-body">
-              <div class="form-group">
+              <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
                 <label>Title</label>
-                <input name="title" class="form-control" placeholder= "Enter title of post">
+                <input name="title" class="form-control" value="{{ old('title') }}" placeholder= "Enter title of post">
+
+                {!! $errors->first('title', '<span class="help-block">:message</span>') !!}
+
               </div>
-              <div class="form-group">
+              <div class="form-group {{ $errors->has('body') ? 'has-error' : '' }}">
                 <label>Body</label>
-                <textarea rows="10" id="editor" name="body" class="form-control" placeholder= "Enter body of post"></textarea>
+                <textarea rows="10" id="editor" name="body" class="form-control" placeholder= "Enter body of post">{{ old('body') }}</textarea>
+
+                {!! $errors->first('body', '<span class="help-block">:message</span>') !!}
+
               </div>
             </div>
         </div>
@@ -47,34 +53,45 @@
                 <div class="input-group-addon">
                   <i class="fa fa-calendar"></i>
                 </div>
-                <input name="published_at" type="text" class="form-control pull-right" id="datepicker">
+                <input name="published_at"
+                  class="form-control pull-right"
+                  value="{{ old('published_at') }}"
+                  type="text"
+                  id="datepicker">
               </div>
             </div>
 
-            <div class="form-group">
-              <label>Categories</label>
+            <div class="form-group {{ $errors->has('category') ? 'has-error' : '' }}">
+              <label>Category</label>
               <select name="category" class="form-control">
                 <option value="">Select category</option>
                   @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    <option value="{{ $category->id }}" {{ old('category') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                   @endforeach
               </select>
+
+              {!! $errors->first('category', '<span class="help-block">:message</span>') !!}
+
             </div>
 
-            <div class="form-group">
+            <div class="form-group {{ $errors->has('tags') ? 'has-error' : '' }}">
               <label>Tags</label>
               <select name="tags[]" class="form-control select2"
                       multiple="multiple"
                       data-placeholder="Select one or more tags" style="width: 100%;">
                   @foreach ($tags as $tag)
-                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                    <option {{ collect(old('tags'))->contains($tag->id) ? 'selected' : '' }} value="{{ $tag->id }}">{{ $tag->name }}</option>
                   @endforeach
               </select>
+              {!! $errors->first('tags', '<span class="help-block">:message</span>') !!}
             </div>
 
-            <div class="form-group">
+            <div class="form-group {{ $errors->has('category') ? 'has-error' : '' }}">
               <label>Excerpt</label>
-              <textarea name="excerpt" class="form-control" placeholder= "Enter excerpt of post"></textarea>
+              <textarea name="excerpt" class="form-control" placeholder= "Enter excerpt of post">{{ old('excerpt') }}</textarea>
+
+              {!! $errors->first('excerpt', '<span class="help-block">:message</span>') !!}
+
             </div>
 
             <div class="form-group">
