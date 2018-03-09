@@ -27,33 +27,51 @@ class PostsController extends Controller
 
   public function store(Request $request)
   {
-    // dd($request->filled('published_at'));
-    $this->validate($request, [
+    $this->validate($request, ['title' => 'required']);
 
-      'title' => 'required',
-      'body' => 'required',
-      'category' => 'required',
-      'tags' => 'required',
-      'excerpt' => 'required'
-
+    $post = Post::create([
+      'title' => $request->get('title'),
+      'url' => str_slug($request->get('title')),
     ]);
 
-    $post = new Post;
-
-    $post->title = $request->get('title');
-    $post->url = str_slug($request->get('title'));
-    $post->body = $request->get('body');
-    $post->excerpt = $request->get('excerpt');
-    $post->published_at = $request->filled('published_at') ? Carbon::parse($request->get('published_at')) : null;
-    $post->category_id = $request->get('category');
-
-    $post->save();
-
-    $post->tags()->attach($request->get('tags'));
-
-    return back()->with('flash', 'Creado!');
-
+    return redirect()->route('admin.posts.edit', $post);
 
   }
+
+  public function edit(Post $post)
+  {
+    return view('admin.posts.edit', compact('post'));
+  }
+
+  // public function store(Request $request)
+  // {
+  //   // dd($request->filled('published_at'));
+  //   $this->validate($request, [
+  //
+  //     'title' => 'required',
+  //     'body' => 'required',
+  //     'category' => 'required',
+  //     'tags' => 'required',
+  //     'excerpt' => 'required'
+  //
+  //   ]);
+  //
+  //   $post = new Post;
+  //
+  //   $post->title = $request->get('title');
+  //   $post->url = str_slug($request->get('title'));
+  //   $post->body = $request->get('body');
+  //   $post->excerpt = $request->get('excerpt');
+  //   $post->published_at = $request->filled('published_at') ? Carbon::parse($request->get('published_at')) : null;
+  //   $post->category_id = $request->get('category');
+  //
+  //   $post->save();
+  //
+  //   $post->tags()->attach($request->get('tags'));
+  //
+  //   return back()->with('flash', 'Creado!');
+  //
+  //
+  // }
 
 }
