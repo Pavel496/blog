@@ -1,124 +1,26 @@
-@extends('admin.layout')
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <form method="POST" action="{{ route('admin.posts.store') }}">
+    {{ csrf_field() }}
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Create title of new publication</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
+              {{-- <label>Title</label> --}}
+              <input name="title" class="form-control" value="{{ old('title') }}" placeholder= "Enter title of post">
 
-@section('header')
-  <h1>
-    POSTS
-    <small>Create post</small>
-  </h1>
-  <ol class="breadcrumb">
-    <li><a href="{{ route('dashboard') }}"><i class="fa fa-home"></i> Dashboard</a></li>
-    <li><a href="{{ route('admin.posts.index') }}"><i class="fa fa-list"></i> Posts</a></li>
-    <li class="active">Create post</li>
-  </ol>
-@endsection
-
-@section('content')
-  <div class="row">
-    <form method="POST" action="{{ route('admin.posts.store') }}">
-      {{ csrf_field() }}
-      <div class="col-md-8">
-        <div class="box box-primary">
-          {{-- <div class="box-header">
-            <h3 class="box-title">Create post</h3>
-          </div> --}}
-            <div class="box-body">
-              <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
-                <label>Title</label>
-                <input name="title" class="form-control" value="{{ old('title') }}" placeholder= "Enter title of post">
-
-                {!! $errors->first('title', '<span class="help-block">:message</span>') !!}
-
-              </div>
-              <div class="form-group {{ $errors->has('body') ? 'has-error' : '' }}">
-                <label>Body</label>
-                <textarea rows="10" id="editor" name="body" class="form-control" placeholder= "Enter body of post">{{ old('body') }}</textarea>
-
-                {!! $errors->first('body', '<span class="help-block">:message</span>') !!}
-
-              </div>
-            </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="box box-primary">
-          {{-- <div class="box-header">
-            <h3 class="box-title"></h3>
-          </div> --}}
-          <div class="box-body">
-
-            <!-- Date -->
-            <div class="form-group">
-              <label>Date of publication</label>
-              <div class="input-group date">
-                <div class="input-group-addon">
-                  <i class="fa fa-calendar"></i>
-                </div>
-                <input name="published_at"
-                  class="form-control pull-right"
-                  value="{{ old('published_at') }}"
-                  type="text"
-                  id="datepicker">
-              </div>
-            </div>
-
-            <div class="form-group {{ $errors->has('category') ? 'has-error' : '' }}">
-              <label>Category</label>
-              <select name="category" class="form-control">
-                <option value="">Select category</option>
-                  @foreach ($categories as $category)
-                    <option value="{{ $category->id }}" {{ old('category') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
-                  @endforeach
-              </select>
-
-              {!! $errors->first('category', '<span class="help-block">:message</span>') !!}
+              {!! $errors->first('title', '<span class="help-block">:message</span>') !!}
 
             </div>
-
-            <div class="form-group {{ $errors->has('tags') ? 'has-error' : '' }}">
-              <label>Tags</label>
-              <select name="tags[]" class="form-control select2"
-                      multiple="multiple"
-                      data-placeholder="Select one or more tags" style="width: 100%;">
-                  @foreach ($tags as $tag)
-                    <option {{ collect(old('tags'))->contains($tag->id) ? 'selected' : '' }} value="{{ $tag->id }}">{{ $tag->name }}</option>
-                  @endforeach
-              </select>
-              {!! $errors->first('tags', '<span class="help-block">:message</span>') !!}
-            </div>
-
-            <div class="form-group {{ $errors->has('category') ? 'has-error' : '' }}">
-              <label>Excerpt</label>
-              <textarea name="excerpt" class="form-control" placeholder= "Enter excerpt of post">{{ old('excerpt') }}</textarea>
-
-              {!! $errors->first('excerpt', '<span class="help-block">:message</span>') !!}
-
-            </div>
-
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-block">Save Publication</button>
-            </div>
-
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button class="btn btn-primary">Create publication</button>
           </div>
         </div>
       </div>
     </form>
-  </div>
-@endsection
-
-@push('styles')
-  <link rel="stylesheet" href="/adminlte/plugins/datepicker/datepicker3.css">
-  <link rel="stylesheet" href="/adminlte/plugins/select2/select2.min.css">
-@endpush
-
-@push('scripts')
-  <script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
-  <script src="/adminlte/plugins/select2/select2.full.min.js"></script>
-  <script src="/adminlte/plugins/datepicker/bootstrap-datepicker.js"></script>
-  <script>
-    $('#datepicker').datepicker({
-      autoclose: true
-    });
-    $(".select2").select2();
-    CKEDITOR.replace('editor');
-  </script>
-@endpush
+</div>

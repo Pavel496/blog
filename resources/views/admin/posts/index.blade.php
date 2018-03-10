@@ -72,7 +72,7 @@
     );
     });
   </script>
-
+{{--
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <form method="POST" action="{{ route('admin.posts.store') }}">
@@ -100,5 +100,6 @@
         </div>
       </form>
   </div>
+--}}
 
 @endpush
