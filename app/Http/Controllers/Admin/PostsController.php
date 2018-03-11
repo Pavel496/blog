@@ -72,7 +72,7 @@ class PostsController extends Controller
 
     $post->tags()->sync($request->get('tags'));
 
-    return back()->with('flash', 'Публикация сохранена');
+    return redirect()->route('admin.posts.edit', $post)->with('flash', 'Публикация сохранена');
 
 
   }

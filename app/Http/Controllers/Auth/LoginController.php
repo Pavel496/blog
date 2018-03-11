@@ -26,7 +26,7 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/admin';
-
+    //app\Http\Middleware\RedirectIfAuthenticated.php там тоже redirect('/admin')
     /**
      * Create a new controller instance.
      *
