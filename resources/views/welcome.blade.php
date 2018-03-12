@@ -29,6 +29,7 @@
 
 				@if ($post->photos->count() === 1)
 					<figure><img src="{{ $post->photos->first()->url }}" alt="" class="img-responsive"></figure>
+					
 				@elseif ($post->photos->count() > 1)
 
 					<div class="gallery-photos masonry">

@@ -3,9 +3,29 @@
 
 @section('content')
 <article class="post container">
-    @if ($post->photos->count() === 1)
+
+  @if ($post->photos->count() === 1)
+    <figure><img src="{{ $post->photos->first()->url }}" alt="" class="img-responsive"></figure>
+
+  @elseif ($post->photos->count() > 1)
+
+    @include('posts.carousel')
+
+    {{-- <div class="gallery-photos masonry">
+      @foreach ($post->photos->take(4) as $photo)
+        <figure class="gallery-image">
+          @if ($loop->iteration === 4)
+            <div class="overlay">{{ $post->photos->count() }} Fotos</div>
+          @endif
+          <img src="{{ url($photo->url) }}" alt="">
+        </figure>
+      @endforeach
+    </div> --}}
+
+  @endif
+    {{-- @if ($post->photos->count() === 1)
       <figure><img src="{{ $post->photos->first()->url }}" alt="" class="img-responsive"></figure>
-    @endif
+    @endif --}}
     <div class="content-post">
       <header class="container-flex space-between">
         <div class="date">
@@ -40,6 +60,15 @@
 </article>
 @stop
 
+@push('styles')
+  <link rel="stylesheet" type="text/css" href="/css/twitter-bootstrap.css">
+@endpush
+
 @push('scripts')
   <script id="dsq-count-scr" src="//zendero.disqus.com/count.js" async></script>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script src="/js/twitter-bootstrap.js" async></script>
 @endpush
