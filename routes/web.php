@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/', 'PagesController@home');
-Route::get('blog/{post}', 'PostsController@show');
+Route::get('blog/{post}', 'PostsController@show')->name('posts.show');
 // Route::get('admin/posts', 'Admin\PostsController@index');
 
 Route::group([

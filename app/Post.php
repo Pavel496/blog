@@ -32,6 +32,13 @@ class Post extends Model
 
         }
 
+        public function photos()
+        {
+
+            return $this->hasMany(Photo::class);
+
+        }
+
         public function scopePublished($query)
         {
           $query->whereNotNull('published_at')
