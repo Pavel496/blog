@@ -38,6 +38,7 @@
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->excerpt }}</td>
                         <td>
+                          <a href="#" class="btn btn-xs btn-info"><i class="fa fa-eye"></i></span></a>
                           <a href="#" class="btn btn-xs btn-info"><i class="fa fa-pencil"></i></span></a>
                           <a href="#" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></span></a>
                         </td>

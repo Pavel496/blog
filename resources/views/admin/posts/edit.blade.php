@@ -8,7 +8,7 @@
   <ol class="breadcrumb">
     <li><a href="{{ route('dashboard') }}"><i class="fa fa-home"></i> Dashboard</a></li>
     <li><a href="{{ route('admin.posts.index') }}"><i class="fa fa-list"></i> Posts</a></li>
-    <li class="active">Create post</li>
+    <li class="active">Edit post</li>
   </ol>
 @endsection
 
@@ -86,7 +86,7 @@
               {!! $errors->first('tags', '<span class="help-block">:message</span>') !!}
             </div>
 
-            <div class="form-group {{ $errors->has('category') ? 'has-error' : '' }}">
+            <div class="form-group {{ $errors->has('excerpt') ? 'has-error' : '' }}">
               <label>Excerpt</label>
               <textarea name="excerpt" class="form-control" placeholder= "Enter excerpt of post">{{ old('excerpt', $post->excerpt) }}</textarea>
 
