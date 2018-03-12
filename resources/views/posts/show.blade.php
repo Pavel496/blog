@@ -2,7 +2,10 @@
 
 
 @section('content')
-  <article class="post image-w-text container">
+<article class="post container">
+    @if ($post->photos->count() === 1)
+      <figure><img src="{{ $post->photos->first()->url }}" alt="" class="img-responsive"></figure>
+    @endif
     <div class="content-post">
       <header class="container-flex space-between">
         <div class="date">
@@ -34,7 +37,7 @@
 
       </div><!-- .comments -->
     </div>
-  </article>
+</article>
 @stop
 
 @push('scripts')
