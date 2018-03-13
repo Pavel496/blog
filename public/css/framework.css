@@ -118,7 +118,7 @@
 .img-responsive{
 	max-width: 100%;
 	height: auto;
-	display: block;
+	/* display: block; */
 }
 .space-inter{
 	padding: 35px 5px;

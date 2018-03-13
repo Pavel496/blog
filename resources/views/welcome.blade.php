@@ -33,6 +33,7 @@
 				@elseif ($post->photos->count() > 1)
 
 					<div class="gallery-photos masonry">
+
 						@foreach ($post->photos->take(4) as $photo)
 							<figure>
 								@if ($loop->iteration === 4)
@@ -41,6 +42,7 @@
 								<img src="{{ url($photo->url) }}" class="img-responsive" alt="">
 							</figure>
 						@endforeach
+						
 					</div>
 
 				@endif
