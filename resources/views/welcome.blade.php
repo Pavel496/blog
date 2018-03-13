@@ -9,24 +9,6 @@
 
 			<article class="post">
 
-				{{-- <div class="gallery-photos masonry">
-					<figure class="gallery-image"><img src="img/img-post-gallery-1.png" alt=""></figure>
-
-					<figure class="gallery-image"><img src="img/img-post-gallery-3.png" alt=""></figure>
-
-					<figure class="gallery-image"><img src="img/img-post-gallery-2.png" alt=""></figure>
-
-					<figure class="gallery-image"><img src="img/img-post-gallery-hover.png" alt=""></figure>
-				</div>				 --}}
-
-				{{-- <div class="gallery-photos masonry">
-					@foreach ($post->photos as $photo)
-						<figure class="gallery-image">
-							<img src="{{ url($photo->url) }}" alt="">
-						</figure>
-					@endforeach
-				</div> --}}
-
 				@if ($post->photos->count() === 1)
 					<figure><img src="{{ $post->photos->first()->url }}" class="img-responsive" alt=""></figure>
 
@@ -80,12 +62,14 @@
 
 	</section><!-- fin del div.posts.container -->
 
-	<div class="pagination">
+	{{ $posts->links() }}
+
+	{{-- <div class="pagination">
 		<ul class="list-unstyled container-flex space-center">
 			<li><a href="#" class="pagination-active">1</a></li>
 			<li><a href="#">2</a></li>
 			<li><a href="#">3</a></li>
 		</ul>
-	</div>
+	</div> --}}
 
 @stop
