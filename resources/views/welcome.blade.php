@@ -28,17 +28,17 @@
 				</div> --}}
 
 				@if ($post->photos->count() === 1)
-					<figure><img src="{{ $post->photos->first()->url }}" alt="" class="img-responsive"></figure>
-					
+					<figure><img src="{{ $post->photos->first()->url }}" class="img-responsive" alt=""></figure>
+
 				@elseif ($post->photos->count() > 1)
 
 					<div class="gallery-photos masonry">
 						@foreach ($post->photos->take(4) as $photo)
-							<figure class="gallery-image">
+							<figure>
 								@if ($loop->iteration === 4)
 									<div class="overlay">{{ $post->photos->count() }} Fotos</div>
 								@endif
-								<img src="{{ url($photo->url) }}" alt="">
+								<img src="{{ url($photo->url) }}" class="img-responsive" alt="">
 							</figure>
 						@endforeach
 					</div>
