@@ -4,7 +4,10 @@
 @section('content')
 
 	<section class="posts container">
-
+		@if (isset($category))
+			<h3>Показываем только категорию {{ $category->name }}</h3>
+		@endif
+		
 		@foreach($posts as $post)
 
 			<article class="post">
@@ -39,7 +42,9 @@
 						</div>
 											{{--format('d M Y')--}}
 						<div class="post-category">
-							<span class="category text-capitalize">{{ $post->category->name }}</span>
+							<span class="category">	 {{--text-capitalize--}}
+								<a href="{{ route('categories.show', $post->category) }}">{{ $post->category->name }}</a>
+							</span>
 						</div>
 					</header>
 					<h1>{{ $post->title }}</h1>
