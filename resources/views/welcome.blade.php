@@ -42,9 +42,12 @@
 								<img src="{{ url($photo->url) }}" class="img-responsive" alt="">
 							</figure>
 						@endforeach
-						
-					</div>
 
+					</div>
+				@elseif ($post->iframe)
+					<div class="video">
+						{!! $post->iframe !!}
+					</div>
 				@endif
 
 				<div class="content-post">

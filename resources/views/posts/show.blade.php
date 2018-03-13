@@ -11,6 +11,11 @@
 
     @include('posts.carousel')
 
+  @elseif ($post->iframe)
+    <div class="video">
+      {!! $post->iframe !!}
+    </div>
+
     {{-- <div class="gallery-photos masonry">
       @foreach ($post->photos->take(4) as $photo)
         <figure class="gallery-image">

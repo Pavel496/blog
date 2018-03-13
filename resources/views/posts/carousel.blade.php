@@ -18,6 +18,7 @@
     </div>
 
   @endforeach
+    {{-- {{ $post->title }} --}}
     ...
   </div>
 
