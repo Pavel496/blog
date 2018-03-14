@@ -95,7 +95,7 @@
 
             <div class="form-group {{ $errors->has('category') ? 'has-error' : '' }}">
               <label>Category</label>
-              <select name="category" class="form-control">
+              <select name="category" class="form-control select2">
                 <option value="">Select category</option>
                   @foreach ($categories as $category)
                     <option value="{{ $category->id }}" {{ old('category', $post->category_id) == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
@@ -159,7 +159,9 @@
       autoclose: true
     });
 
-    $(".select2").select2();
+    $(".select2").select2({
+      tags: true
+    });
 
     CKEDITOR.replace('editor');
     CKEDITOR.config.height = 315;
