@@ -76,34 +76,8 @@ class PostsController extends Controller
 
     // $post->tags()->sync($tags);
 
-    return redirect()
-      ->route('admin.posts.edit', $post)
-      ->with('flash', 'Публикация сохранена');
+    return redirect()->route('admin.posts.edit', $post)->with('flash', 'Публикация сохранена');
+
 
   }
-
-  public function destroy(Post $post)
-  {
-    $post->tags()->detach();
-
-    // $post->photos()->delete();
-
-    // foreach ($post->photos as $photo) {
-    //   $photo->delete();
-    // }
-
-    // $post->photos->each(function($photo){
-    //     $photo->delete();
-    // });
-
-    $post->photos->each->delete();
-
-    $post->delete();
-
-    return redirect()
-      ->route('admin.posts.index', $post)
-      ->with('flash', 'Публикация удалена');
-
-  }
-
 }
