@@ -15,7 +15,6 @@ class PostsController extends Controller
   public function index()
   {
     $posts = Post::all();
-// dd($posts->photos());
     return view('admin.posts.index', compact('posts'));
   }
 
@@ -85,7 +84,7 @@ class PostsController extends Controller
 
   public function destroy(Post $post)
   {
-
+    $post->tags()->detach();
 
     // $post->photos()->delete();
 
@@ -97,7 +96,7 @@ class PostsController extends Controller
     //     $photo->delete();
     // });
 
-
+    $post->photos->each->delete();
 
     $post->delete();
 
