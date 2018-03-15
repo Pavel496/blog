@@ -8,6 +8,7 @@ use App\Category;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePostRequest;
 
 class PostsController extends Controller
 {
@@ -45,45 +46,38 @@ class PostsController extends Controller
 
   }
 
-  public function update(Post $post, Request $request)
+  public function update(Post $post, StorePostRequest $request)
   {
-    $this->validate($request, [
+    // $post->title = $request->get('title');
+    // $post->body = $request->get('body');
+    // $post->iframe = $request->get('iframe');
+    // $post->excerpt = $request->get('excerpt');
+    // $post->published_at = $request->get('published_at');
+    // $post->category_id = $request->get('category_id');
+    // $post->save();
 
-      'title' => 'required',
-      'body' => 'required',
-      'category' => 'required',
-      'tags' => 'required',
-      'excerpt' => 'required'
+    // $post->update($request->except('tags'));
 
-    ]);
+    $post->update($request->all());
 
-    $post->title = $request->get('title');
-    // $post->url = str_slug($request->get('title'));
-    $post->body = $request->get('body');
-    $post->iframe = $request->get('iframe');
-    $post->excerpt = $request->get('excerpt');
-    $post->published_at = $request->filled('published_at')
-                          ? Carbon::parse($request->get('published_at'))
-                          : null;
+    $post->syncTags($request->get('tags'));
 
-    $post->category_id = Category::find($cat = $request->get('category'))
-                        ? $cat
-                        : Category::create(['name' => $cat])->id;
-    $post->save();
+    // $tags = collect($request->get('tags'))->map(function($tag){
+    //   return Tag::find($tag) ? $tag : Tag::create(['name' => $tag])->id;
+    // });
 
-    $tags = [];
+    // $tags = [];
+    //
+    // foreach ($request->get('tags') as $tag) {
+    //   $tags[] = Tag::find($tag)
+    //             ? $tag
+    //             : Tag::create(['name' => $tag])->id;
+    // }
 
-    foreach ($request->get('tags') as $tag) {
-      $tags[] = Tag::find($tag)
-                ? $tag
-                : Tag::create(['name' => $tag])->id;
-    }
-
-    $post->tags()->sync($tags);
+    // $post->tags()->sync($tags);
 
     return redirect()->route('admin.posts.edit', $post)->with('flash', 'Публикация сохранена');
 
 
   }
-
 }
