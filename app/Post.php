@@ -15,6 +15,17 @@ class Post extends Model
 
         protected $dates = ['published_at'];
 
+        protected static function boot()
+        {
+          parent::boot();
+
+          static::deleting(function($post){
+            // Storage::disk('public')->delete($photo->url);
+            $post->tags()->detach();
+            $post->photos->each->delete();
+          });
+        }
+
         public function getRouteKeyName()
         {
 
